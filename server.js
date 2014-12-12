@@ -75,6 +75,7 @@ var tasks = TasksClass(db,ObjectID);
 
 
 var express = require('express');
+var fs = require('fs');
 var app = express();
 
 var bodyParser = require('body-parser')
@@ -83,9 +84,16 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
+app.use(express.static('public'));
+
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  /*res.set('Content-Type', 'text/html');
+  fs.readFile('backbone.html', function (err, data) {
+     res.send(data);
+  });*/
+  res.send("Server Home");
 });
+
 
 app.get('/tasks', function (req, res) {
   //res.send('Hello World! 2')
